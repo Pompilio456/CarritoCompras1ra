@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" ng-controller="namesCtrl">
+
+<head>
+  <link  type="text/css" rel="stylesheet"  href="css/estilo.css">
+  <meta charset="utf-8">
+  <title>Principal</title>
+
+  <script src= "Js\angular.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+  <script src="Js/carrito.js" type="text/javascript"></script>
+  <script src="Js/app.js" type="text/javascript"></script>
+
+</head>
+
+<header>
+    <h2><IMG SRC="imagenes/logo.png"></h2>
+  </header>
+
+<section>
+
+  <article>
+    <div>
+        <p><input  type="text" ng-model="test" placeholder="Buscar"></p>
+    </div>
+
+      <div ng-repeat="x in productosTienda | filter:test ">
+        <h3>{{ x.nombre}}</h3>
+        <div class="ordenar">
+          <img  class="imagenProducto" ng-src="{{x.imagen}}">
+        </div>
+
+        <div class="ordenar">
+          <p> Precio: ${{x.precio}}</p>
+          <p>unidades:{{x.unidades}}</p>
+        </div>
+
+
+         <div class="ordenar">
+            <a  ng-click="add(x)">
+              <div class="botonAgregar"></div>
+
+            </a>
+        </div>
+      </div>
+    </div>
+
+  </article>
+
+</section>
+<aside>
+
+  <table>
+    <tr>
+		  <!--<th>id</th>-->
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Precio total Producto</th>
+      <th>Eliminar</th>
+    </tr>
+    <tr ng-repeat="y in contenedorDelCarrito">
+      <!--<td>{{y.id}}</td>-->
+      <td>{{y.nombre}}</td>
+      <td>{{y.qty}}</td>
+      <td>{{y.precio}}</td>
+      <td>{{y.precio * y.qty}}</td>
+      <td><a class="hoverEliminar"  ng-click="remove(y.id)">Eliminar</a></td>
+    </tr>
+    <tr>
+      <td colspan="6">Precio total en el  carrito: {{precioTotalCarrito}}</td>
+    <tr>
+    <tr>
+      <td colspan="6">Número total de artículos: {{totalProductosCarrito}}</td>
+    <tr>
+
+
+
+    <tr >
+      <td colspan="6">
+        <a class="hover" ng-click="buy()" ><p>Confirmar </p>
+          <IMG id="imagenCarrito" SRC="imagenes/carrito.png">
+         <a>
+
+
+      </td>
+    </tr>
+  </table>
+</aside>
+
+
+<footer>
+
+</footer>
+
+
+</body>
+</html>
